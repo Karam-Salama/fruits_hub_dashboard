@@ -20,8 +20,9 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-# To add assets to your application, add an assets section, like this:
+  # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/
     - assets/icons/
     - assets/images/
 
@@ -36,3 +37,9 @@ flutter:
           weight: 600
         - asset: assets/fonts/Cairo-Bold.ttf
           weight: 700
+
+#==================================  Generate  Flutter  Assets  Section  ==============================
+flutter_assets:
+  assets_path: assets/icons/
+  output_path: lib/core/utils/
+  filename: assets1.dart
