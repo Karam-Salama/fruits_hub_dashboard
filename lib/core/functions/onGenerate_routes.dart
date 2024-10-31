@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../../modules/dashboard/views/add_product_view.dart';
+import '../../modules/add_product/presentation/views/add_product_view.dart';
 import '../../modules/dashboard/views/dashboard_view.dart';
 
 Route<dynamic> onGenerateRoute(RouteSettings settings) {

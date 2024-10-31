@@ -1,8 +1,8 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-
-import '../../../core/widgets/custom_home_appBar.dart';
+import '../../../../core/widgets/custom_home_appBar.dart';
+import 'custom_add_product_form.dart';
 
 class AddProductViewBody extends StatelessWidget {
   const AddProductViewBody({super.key});
@@ -21,14 +21,13 @@ class AddProductViewBody extends StatelessWidget {
               child: CustomHomeBar(
                 title: 'Add Product',
                 leading: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
                   icon: const Icon(Icons.arrow_back_ios_new),
+                  onPressed: () => Navigator.pop(context),
                 ),
               ),
             ),
-            SliverToBoxAdapter(child: SizedBox(height: size.height / 3)),
+            SliverToBoxAdapter(child: SizedBox(height: size.height / 20)),
+            const SliverToBoxAdapter(child: CustomAddProductForm())
           ],
         ),
       ),

@@ -3,7 +3,7 @@ import 'package:fruits_hub_dashboard/core/functions/navigation.dart';
 import 'package:fruits_hub_dashboard/core/utils/app_text_styles.dart';
 import '../../../core/widgets/custom_btn.dart';
 import '../../../core/widgets/custom_home_appBar.dart';
-import '../views/add_product_view.dart';
+import '../../add_product/presentation/views/add_product_view.dart';
 
 class DashboardViewBody extends StatelessWidget {
   const DashboardViewBody({super.key});
