@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import '../../../../core/widgets/custom_home_appBar.dart';
+import '../../../../core/widgets/custom_app_bar.dart';
 import 'custom_add_product_form.dart';
 
 class AddProductViewBody extends StatelessWidget {
@@ -11,23 +11,14 @@ class AddProductViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: const CustomAppBar(title: 'Add Product'),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: size.width / 20),
-        child: CustomScrollView(
-          physics: const BouncingScrollPhysics(),
+        child: const CustomScrollView(
+          physics: BouncingScrollPhysics(),
           slivers: [
-            SliverToBoxAdapter(child: SizedBox(height: size.height / 20)),
-            SliverToBoxAdapter(
-              child: CustomHomeBar(
-                title: 'Add Product',
-                leading: IconButton(
-                  icon: const Icon(Icons.arrow_back_ios_new),
-                  onPressed: () => Navigator.pop(context),
-                ),
-              ),
-            ),
-            SliverToBoxAdapter(child: SizedBox(height: size.height / 20)),
-            const SliverToBoxAdapter(child: CustomAddProductForm())
+            SliverToBoxAdapter(child: SizedBox(height: 16)),
+            SliverToBoxAdapter(child: CustomAddProductForm()),
           ],
         ),
       ),
