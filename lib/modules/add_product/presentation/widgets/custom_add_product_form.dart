@@ -9,7 +9,7 @@ import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_styles.dart';
 import '../../../../core/widgets/custom_btn.dart';
 import '../../../../core/widgets/custom_dialog_widget.dart';
-import '../../domain/entities/add_product_entity.dart';
+import '../../domain/entities/product_entity.dart';
 import '../manager/cubit/add_product_cubit.dart';
 import 'custom_upload_product_image_widget.dart';
 import 'cutom_text_form_field_widget_.dart';
@@ -179,21 +179,19 @@ class _CustomAddProductFormState extends State<CustomAddProductForm> {
                         if (productImage != null) {
                           if (_formKey.currentState!.validate()) {
                             _formKey.currentState!.save();
-                            AddProductEntity addProductEntity =
-                                AddProductEntity(
-                              name: productName!,
-                              image: productImage!,
-                              code: productCode!,
-                              price: productPrice!,
-                              discount: productDiscount!,
-                              description: productDescription!,
-                              isFeatured: isFeatured,
-                              expirationMonths: expirationMonths!.toInt(),
-                              numberOfCalories: numberOfCalories!.toInt(),
-                              unitAmount: unitAmount!.toInt(),
-                              isOrganic: isOrganic,
-                              reviews: []
-                            );
+                            ProductEntity addProductEntity = ProductEntity(
+                                name: productName!,
+                                image: productImage!,
+                                code: productCode!,
+                                price: productPrice!,
+                                discount: productDiscount!,
+                                description: productDescription!,
+                                isFeatured: isFeatured,
+                                expirationsMonths: expirationMonths!.toInt(),
+                                numberOfCalories: numberOfCalories!.toInt(),
+                                unitAmount: unitAmount!.toInt(),
+                                isOrganic: isOrganic,
+                                reviews: []);
                             context
                                 .read<AddProductCubit>()
                                 .addProduct(addProductEntity);
