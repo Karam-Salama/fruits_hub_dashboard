@@ -3,17 +3,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub_dashboard/core/repos/add_product_repos/product_repo.dart';
 import 'package:fruits_hub_dashboard/core/repos/images_repos/images_repo.dart';
 
-import '../../../domain/entities/add_product_entity.dart';
+import '../../../domain/entities/product_entity.dart';
 
 part 'add_product_state.dart';
 
 class AddProductCubit extends Cubit<AddProductState> {
-  AddProductCubit(this.imagesRepo, this.productRepo) : super(AddProductInitial());
+  AddProductCubit(this.imagesRepo, this.productRepo)
+      : super(AddProductInitial());
 
   final ImagesRepo imagesRepo;
   final ProductRepo productRepo;
 
-  Future<void> addProduct(AddProductEntity addProductEntity) async {
+  Future<void> addProduct(ProductEntity addProductEntity) async {
     emit(AddProductLoading());
     var result = await imagesRepo.uploadImage(addProductEntity.image);
     result.fold(
@@ -31,9 +32,7 @@ class AddProductCubit extends Cubit<AddProductState> {
             emit(AddProductSuccess());
           },
         );
-        
       },
     );
-      
   }
 }

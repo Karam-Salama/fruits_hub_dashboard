@@ -3,46 +3,50 @@
 import 'dart:io';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:path/path.dart';
+import 'package:path/path.dart' as b;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'storage_service.dart';
 
 class SupabaseStorageService implements StorageService {
   static late Supabase _supabase;
-  static createBucket(String bucketName) async {
+
+  // إنشاء Bucket إذا لم يكن موجودًا
+  static Future<void> createBucket(String bucketName) async {
     var buckets = await _supabase.client.storage.listBuckets();
-    bool bucketExists = false;
-    for (var bucket in buckets) {
-      if (bucket.id == bucketName) {
-        bucketExists = true;
-        break;
-      }
-    }
+    bool bucketExists = buckets.any((bucket) => bucket.id == bucketName);
+
     if (!bucketExists) {
       await _supabase.client.storage.createBucket(bucketName);
     }
   }
 
-  static initSupabase() async {
+  // تهيئة Supabase
+  static Future<void> initSupabase() async {
     _supabase = await Supabase.initialize(
       url: dotenv.env['SUPABASE_PROJETC_URL'].toString(),
       anonKey: dotenv.env['SUPABASE_SECRET_KEY'].toString(),
     );
   }
 
+  // رفع الصورة إلى Supabase
   @override
   Future<String> uploadImage(File file, String path) async {
-    String fileName = basename(file.path);
-    String extenstionName = extension(file.path);
-    var result = await _supabase.client.storage
-        .from('fruits_images')
-        .upload("$path/$fileName", file);
+    try {
+      String fileName = b.basename(file.path); // اسم الملف مع الامتداد
+      var result = await _supabase.client.storage
+          .from('fruits_images')
+          .upload('$path/$fileName', file);
 
-    final String publicUrl = _supabase.client.storage
-        .from('fruits_images')
-        .getPublicUrl("$path/$fileName");
+      // جلب رابط URL صالح
+      String publicUrl = _supabase.client.storage
+          .from('fruits_images')
+          .getPublicUrl('$path/$fileName')
+          .toString();
 
-    return result;
+      return publicUrl; // إعادة الرابط العام
+    } catch (e) {
+      throw Exception('Failed to upload image to Supabase: $e');
+    }
   }
 }
