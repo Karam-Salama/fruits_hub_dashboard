@@ -4,6 +4,7 @@ import 'package:fruits_hub_dashboard/core/utils/app_text_styles.dart';
 import '../../../core/widgets/custom_app_bar.dart';
 import '../../../core/widgets/custom_btn.dart';
 import '../../add_product/presentation/views/add_product_view.dart';
+import '../../view_orders/presentation/views/view_orders_view.dart';
 
 class DashboardViewBody extends StatelessWidget {
   const DashboardViewBody({super.key});
@@ -32,9 +33,11 @@ class DashboardViewBody extends StatelessWidget {
             SliverToBoxAdapter(child: SizedBox(height: size.height / 30)),
             SliverToBoxAdapter(
               child: CustomButton(
-                text: 'All Orders',
+                text: 'View Orders',
                 mainAxisAlignment: MainAxisAlignment.center,
-                onPressed: () {},
+                onPressed: () {
+                  customNavigate(context, ViewOrdersView.routeName);
+                },
                 style: AppTextStyle.CairoBoldstyle20,
               ),
             ),
@@ -45,4 +48,3 @@ class DashboardViewBody extends StatelessWidget {
     );
   }
 }
-
