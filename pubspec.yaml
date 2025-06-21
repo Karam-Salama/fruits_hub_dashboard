@@ -1,16 +1,12 @@
 name: fruits_hub_dashboard
 description: "A new Flutter project."
-publish_to: 'none'
+publish_to: "none"
 version: 0.1.0
 
 environment:
   sdk: ^3.5.3
 
 dependencies:
-  cloud_firestore: ^5.5.1
-  dartz: ^0.10.1
-  firebase_core: ^3.6.0
-  firebase_storage: ^12.3.7
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
@@ -21,10 +17,24 @@ dependencies:
   path: ^1.9.0
   skeletonizer: ^1.4.2
   supabase_flutter: ^2.8.1
+  cloud_firestore: ^5.5.1
+  dartz: ^0.10.1
+  firebase_core: ^3.6.0
+  firebase_storage: ^12.3.7
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  # dependency to can make icon for my app
+  flutter_launcher_icons: ^0.13.1
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/logo.png"
+  min_sdk_android: 24 # android min sdk min:16, default 21
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: "assets/logo.png"
+
   flutter_lints: ^4.0.0
 
 flutter:

@@ -4,7 +4,6 @@ import '../widgets/dashboard_view_body.dart';
 
 class DashboardView extends StatelessWidget {
   const DashboardView({super.key});
-
   static const String routeName = 'dashboard-view';
 
   @override
