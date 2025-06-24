@@ -14,25 +14,22 @@ class IsOrganicCheckboxWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Transform.translate(
-      offset: const Offset(-10, -10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Checkbox(
-            value: value,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(4.0),
-            ),
-            side: const BorderSide(color: AppColors.greyColor, width: 1.0),
-            onChanged: onChanged,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Checkbox(
+          value: value,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(4.0),
           ),
-          Text(
-            "Is organic product?",
-            style: AppTextStyle.Cairo600style16.copyWith(fontSize: 13),
-          ),
-        ],
-      ),
+          side: const BorderSide(color: AppColors.greyColor, width: 1.0),
+          onChanged: onChanged,
+        ),
+        Text(
+          "Is organic product?",
+          style: AppTextStyle.Cairo600style16.copyWith(fontSize: 13),
+        ),
+      ],
     );
   }
 }

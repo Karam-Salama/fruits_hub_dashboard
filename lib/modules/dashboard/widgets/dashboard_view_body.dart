@@ -4,7 +4,7 @@ import 'package:fruits_hub_dashboard/core/utils/app_text_styles.dart';
 import '../../../core/widgets/custom_app_bar.dart';
 import '../../../core/widgets/custom_btn.dart';
 import '../../add_product/presentation/views/add_product_view.dart';
-import '../../view_orders/presentation/views/view_orders_view.dart';
+import '../../track_orders/track_orders_view.dart';
 
 class DashboardViewBody extends StatelessWidget {
   const DashboardViewBody({super.key});
@@ -13,12 +13,23 @@ class DashboardViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: const CustomAppBar(title: 'Dashboard'),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: size.width / 20),
         child: CustomScrollView(
           physics: const BouncingScrollPhysics(),
           slivers: [
+            SliverToBoxAdapter(child: SizedBox(height: size.height / 25)),
+            SliverToBoxAdapter(
+              child: CustomAppBar(
+                title: 'Fruits Hub Dashboard For Admin',
+                isVisibleTrailing: false,
+                isVisibleLeading: false,
+                leading: IconButton(
+                  onPressed: () => Navigator.pop(context),
+                  icon: Icon(Icons.arrow_back_ios_new_rounded),
+                ),
+              ),
+            ),
             SliverToBoxAdapter(child: SizedBox(height: size.height / 3)),
             SliverToBoxAdapter(
               child: CustomButton(
@@ -36,7 +47,7 @@ class DashboardViewBody extends StatelessWidget {
                 text: 'View Orders',
                 mainAxisAlignment: MainAxisAlignment.center,
                 onPressed: () {
-                  customNavigate(context, ViewOrdersView.routeName);
+                  customNavigate(context, TrackOrdersView.routeName);
                 },
                 style: AppTextStyle.CairoBoldstyle20,
               ),

@@ -167,6 +167,7 @@ class _CustomAddProductFormState extends State<CustomAddProductForm> {
                   });
                 },
               ),
+              SizedBox(height: 12),
               state is AddProductLoading
                   ? const CircularProgressIndicator(
                       color: AppColors.primaryColor,
