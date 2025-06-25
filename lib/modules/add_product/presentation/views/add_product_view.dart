@@ -10,7 +10,7 @@ import '../widgets/add_product-view_body.dart';
 class AddProductView extends StatelessWidget {
   const AddProductView({super.key});
 
-  static const String routeName = 'add-product';
+  static const String routeName = 'add-product-view';
 
   @override
   Widget build(BuildContext context) {

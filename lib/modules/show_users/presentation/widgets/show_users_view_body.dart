@@ -1,11 +1,9 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
-import '../../../../core/widgets/custom_app_bar.dart';
-import 'custom_add_product_form.dart';
 
-class AddProductViewBody extends StatelessWidget {
-  const AddProductViewBody({super.key});
+import '../../../../core/widgets/custom_app_bar.dart';
+
+class ShowUsersViewBody extends StatelessWidget {
+  const ShowUsersViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +17,7 @@ class AddProductViewBody extends StatelessWidget {
             SliverToBoxAdapter(child: SizedBox(height: size.height / 15)),
             SliverToBoxAdapter(
               child: CustomAppBar(
-                title: "صفحة إضافة منتج جديد",
+                title: "صفحه عرض المستخدمين",
                 isVisibleTrailing: false,
                 leading: IconButton(
                   onPressed: () => Navigator.pop(context),
@@ -28,8 +26,6 @@ class AddProductViewBody extends StatelessWidget {
               ),
             ),
             SliverToBoxAdapter(child: SizedBox(height: size.height / 20)),
-            SliverToBoxAdapter(child: CustomAddProductForm()),
-            SliverToBoxAdapter(child: SizedBox(height: 16)),
           ],
         ),
       ),

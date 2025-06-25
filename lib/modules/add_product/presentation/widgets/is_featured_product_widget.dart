@@ -26,7 +26,7 @@ class FeaturedCheckboxWidget extends StatelessWidget {
           onChanged: onChanged,
         ),
         Text(
-          "Is featured product?",
+          "هل هو منتج مميز ؟",
           style: AppTextStyle.Cairo600style16.copyWith(fontSize: 13),
         ),
       ],

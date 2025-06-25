@@ -49,9 +49,10 @@ class CustomAppBar extends StatelessWidget {
               child: Center(
                 child: Text(
                   title!,
+                  textAlign: TextAlign.center,
                   style: AppTextStyle.Cairo700style16.copyWith(
                     color: AppColors.blackColor,
-                    fontSize: 20,
+                    fontSize: 14,
                   ),
                 ),
               ),

@@ -45,8 +45,8 @@ class _CustomAddProductFormState extends State<CustomAddProductForm> {
             context,
             CustomDialog(
               icon: Icons.check_circle,
-              message: 'Product Added Successfully',
-              textButton: 'Ok',
+              message: "تم اضافة المنتج بنجاح",
+              textButton: 'حسناً',
               onpressed: () {
                 Navigator.pop(context);
               },
@@ -58,7 +58,7 @@ class _CustomAddProductFormState extends State<CustomAddProductForm> {
             CustomDialog(
               icon: Icons.error,
               message: state.errorMessage,
-              textButton: 'Try Again',
+              textButton: 'جرب مرة اخرى',
               onpressed: () {
                 Navigator.pop(context);
               },
@@ -79,7 +79,7 @@ class _CustomAddProductFormState extends State<CustomAddProductForm> {
               ),
               const SizedBox(height: 12),
               CustomTextFormField(
-                hintText: "Product Name",
+                hintText: "أسم المنتج",
                 keyboardType: TextInputType.name,
                 validator: Validation.makeValidation,
                 onSaved: (value) {
@@ -88,7 +88,7 @@ class _CustomAddProductFormState extends State<CustomAddProductForm> {
               ),
               const SizedBox(height: 12),
               CustomTextFormField(
-                hintText: "Product Code",
+                hintText: "رقم المنتج",
                 keyboardType: TextInputType.number,
                 validator: Validation.makeValidation,
                 onSaved: (value) {
@@ -97,7 +97,7 @@ class _CustomAddProductFormState extends State<CustomAddProductForm> {
               ),
               const SizedBox(height: 12),
               CustomTextFormField(
-                hintText: "Product Price",
+                hintText: "سعر المنتج",
                 keyboardType: TextInputType.number,
                 validator: Validation.makeValidation,
                 onSaved: (value) {
@@ -106,7 +106,7 @@ class _CustomAddProductFormState extends State<CustomAddProductForm> {
               ),
               const SizedBox(height: 12),
               CustomTextFormField(
-                hintText: "Product Discount",
+                hintText: "خصم المنتج",
                 keyboardType: TextInputType.number,
                 validator: Validation.makeValidation,
                 onSaved: (value) {
@@ -115,7 +115,7 @@ class _CustomAddProductFormState extends State<CustomAddProductForm> {
               ),
               const SizedBox(height: 12),
               CustomTextFormField(
-                hintText: "Expiration Months",
+                hintText: "عدد اشهر الصلاحية",
                 keyboardType: TextInputType.number,
                 validator: Validation.makeValidation,
                 onSaved: (value) {
@@ -124,7 +124,7 @@ class _CustomAddProductFormState extends State<CustomAddProductForm> {
               ),
               const SizedBox(height: 12),
               CustomTextFormField(
-                hintText: "Number of Calories",
+                hintText: "عدد سعرات المنتج",
                 keyboardType: TextInputType.number,
                 validator: Validation.makeValidation,
                 onSaved: (value) {
@@ -133,7 +133,7 @@ class _CustomAddProductFormState extends State<CustomAddProductForm> {
               ),
               const SizedBox(height: 12),
               CustomTextFormField(
-                hintText: "Unit Amount",
+                hintText: "سعر الوحدة",
                 keyboardType: TextInputType.number,
                 validator: Validation.makeValidation,
                 onSaved: (value) {
@@ -142,7 +142,7 @@ class _CustomAddProductFormState extends State<CustomAddProductForm> {
               ),
               const SizedBox(height: 12),
               CustomTextFormField(
-                hintText: "Product Description",
+                hintText: "وصف المنتج",
                 maxLines: 5,
                 keyboardType: TextInputType.text,
                 validator: Validation.makeValidation,
@@ -173,7 +173,7 @@ class _CustomAddProductFormState extends State<CustomAddProductForm> {
                       color: AppColors.primaryColor,
                     )
                   : CustomButton(
-                      text: 'Add Product',
+                      text: 'اضافة المنتج',
                       style: AppTextStyle.Cairo700style16,
                       mainAxisAlignment: MainAxisAlignment.center,
                       onPressed: () async {

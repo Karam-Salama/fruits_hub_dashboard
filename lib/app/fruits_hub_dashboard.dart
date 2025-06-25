@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import '../core/functions/onGenerate_routes.dart';
 import '../core/utils/app_colors.dart';
-import '../modules/dashboard/views/dashboard_view.dart';
+import '../modules/splash/views/splash_view.dart';
 
 class FruitsHubDashboard extends StatelessWidget {
   const FruitsHubDashboard({super.key});
@@ -18,7 +19,17 @@ class FruitsHubDashboard extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: onGenerateRoute,
-      initialRoute: DashboardView.routeName,
+      initialRoute: SplashView.routeName,
+      locale: const Locale('ar'),
+      supportedLocales: const [
+        Locale('ar'),
+        Locale('en'),
+      ],
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
     );
   }
 }

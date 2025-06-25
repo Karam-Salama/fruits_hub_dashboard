@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../core/widgets/custom_app_bar.dart';
+import '../../../../core/widgets/custom_app_bar.dart';
 
-class TrackOrdersViewBody extends StatelessWidget {
-  const TrackOrdersViewBody({super.key});
+class ShowProductsViewBody extends StatelessWidget {
+  const ShowProductsViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +14,10 @@ class TrackOrdersViewBody extends StatelessWidget {
         child: CustomScrollView(
           physics: BouncingScrollPhysics(),
           slivers: [
-            SliverToBoxAdapter(child: SizedBox(height: size.height / 25)),
+            SliverToBoxAdapter(child: SizedBox(height: size.height / 15)),
             SliverToBoxAdapter(
               child: CustomAppBar(
-                title: 'Track Orders View',
+                title: "صفحه عرض المنتجات",
                 isVisibleTrailing: false,
                 leading: IconButton(
                   onPressed: () => Navigator.pop(context),

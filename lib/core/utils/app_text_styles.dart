@@ -59,4 +59,11 @@ abstract class AppTextStyle {
     fontSize: 20,
     fontWeight: FontWeight.bold,
   );
+
+  static final CairoBoldstyle22 = const TextStyle(
+    color: Colors.black,
+    fontFamily: 'Cairo',
+    fontSize: 22,
+    fontWeight: FontWeight.bold,
+  );
 }

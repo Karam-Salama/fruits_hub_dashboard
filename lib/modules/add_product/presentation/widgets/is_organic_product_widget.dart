@@ -26,7 +26,7 @@ class IsOrganicCheckboxWidget extends StatelessWidget {
           onChanged: onChanged,
         ),
         Text(
-          "Is organic product?",
+          "هل هو منتج طبيعي ؟",
           style: AppTextStyle.Cairo600style16.copyWith(fontSize: 13),
         ),
       ],

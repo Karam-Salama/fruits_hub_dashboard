@@ -143,7 +143,8 @@ class Assets {
 
   /// Assets for assetsIconsCartActiveIcon
   /// assets/icons/cart_active_icon.svg
-  static const String assetsIconsCartActiveIcon = "assets/icons/cart_active.svg";
+  static const String assetsIconsCartActiveIcon =
+      "assets/icons/cart_active.svg";
 
   /// Assets for assetsIconsCategory
   /// assets/icons/category.svg
@@ -151,7 +152,8 @@ class Assets {
 
   /// Assets for assetsIconsCategoryActiveIcon
   /// assets/icons/category_active_icon.svg
-  static const String assetsIconsCategoryActiveIcon = "assets/icons/category_active.svg";
+  static const String assetsIconsCategoryActiveIcon =
+      "assets/icons/category_active.svg";
 
   /// Assets for assetsIconsHome
   /// assets/icons/home.svg
@@ -159,13 +161,32 @@ class Assets {
 
   /// Assets for assetsIconsHomeActiveIcon
   /// assets/icons/home_active_icon.svg
-  static const String assetsIconsHomeActiveIcon = "assets/icons/home_active.svg";
+  static const String assetsIconsHomeActiveIcon =
+      "assets/icons/home_active.svg";
 
-    /// Assets for assetsIconsPerson
+  /// Assets for assetsIconsPerson
   /// assets/icons/person.svg
   static const String assetsIconsPerson = "assets/icons/person.svg";
 
   /// Assets for assetsIconsPersonActiveIcon
   /// assets/icons/person_active_icon.svg
-  static const String assetsIconsPersonActiveIcon = "assets/icons/person_active.svg";
+  static const String assetsIconsPersonActiveIcon =
+      "assets/icons/person_active.svg";
+
+  /// Assets for assetsImagesAddProduct
+  /// assets/images/add_product.svg
+  static const String assetsImagesAddProduct = "assets/images/add_product.svg";
+
+  /// Assets for assetsImagesShowProduct
+  /// assets/images/show_product.svg
+  static const String assetsImagesShowProduct =
+      "assets/images/show_product.svg";
+
+  /// Assets for assetsImagesShowUsers
+  /// assets/images/show_users.svg
+  static const String assetsImagesShowUsers = "assets/images/show_users.svg";
+
+  /// Assets for assetsImagesShowOrders
+  /// assets/images/show_orders.svg
+  static const String assetsImagesShowOrders = "assets/images/show_orders.svg";
 }
