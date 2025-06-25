@@ -13,7 +13,7 @@ class AddUserCubit extends Cubit<AddUserState> {
   AutovalidateMode addUserAutoValidateMode = AutovalidateMode.disabled;
   bool isPasswordVisible = false;
 
-  final AuthRepo authRepo;
+  final AddUserRepo authRepo;
 
   void togglePasswordVisibility() {
     isPasswordVisible = !isPasswordVisible;

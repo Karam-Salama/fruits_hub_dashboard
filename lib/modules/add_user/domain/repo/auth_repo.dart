@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import '../../../../core/errors/failures.dart';
 import '../entities/user_entity.dart';
 
-abstract class AuthRepo {
+abstract class AddUserRepo {
   Future<Either<Failure, UserEntity>> addUser(
     String email,
     String password,

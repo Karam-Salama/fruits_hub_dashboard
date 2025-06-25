@@ -15,11 +15,11 @@ import "package:firebase_auth/firebase_auth.dart";
 
 import '../models/user_model.dart';
 
-class AuthRepoImplement extends AuthRepo {
+class AddUserRepoImplement extends AddUserRepo {
   final FirebaseAuthService firebaseAuthService;
   final DatabaseService databaseService;
 
-  AuthRepoImplement({
+  AddUserRepoImplement({
     required this.databaseService,
     required this.firebaseAuthService,
   });

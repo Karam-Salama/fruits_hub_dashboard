@@ -14,7 +14,7 @@ class AddUserView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocProvider(
-        create: (context) => AddUserCubit(authRepo: getIt<AuthRepo>()),
+        create: (context) => AddUserCubit(authRepo: getIt<AddUserRepo>()),
         child: AddUserViewBody(),
       ),
     );
