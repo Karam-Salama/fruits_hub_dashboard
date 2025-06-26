@@ -39,4 +39,12 @@ class UserModel extends UserEntity {
       'uId': uId,
     };
   }
+
+  UserEntity toEntity() {
+    return UserEntity(
+      name: name,
+      email: email,
+      uId: uId,
+    );
+  }
 }

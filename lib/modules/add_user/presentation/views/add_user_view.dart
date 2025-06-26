@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub_dashboard/core/services/service_locator.dart';
 
-import '../../domain/repo/auth_repo.dart';
+import '../../domain/repo/add_user_repo.dart';
 import '../cubit/add_user_cubit.dart';
 import '../widgets/add_user_view_body.dart';
 

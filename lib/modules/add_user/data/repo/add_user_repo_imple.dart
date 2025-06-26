@@ -10,7 +10,7 @@ import '../../../../core/errors/exceptions.dart';
 import '../../../../core/services/database_service.dart';
 import '../../../../core/services/service_firebase_auth.dart';
 import '../../../../core/utils/app_Backend_Endpoints.dart';
-import '../../domain/repo/auth_repo.dart';
+import '../../domain/repo/add_user_repo.dart';
 import "package:firebase_auth/firebase_auth.dart";
 
 import '../models/user_model.dart';

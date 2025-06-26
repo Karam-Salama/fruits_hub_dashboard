@@ -19,7 +19,7 @@ class FirabaseFirestoreService implements DatabaseService {
   @override
   Future<Map<String, dynamic>> getData({
     required String path,
-    required String documentId,
+    String? documentId,
   }) async {
     var data = await firestore.collection(path).doc(documentId).get();
     return data.data() as Map<String, dynamic>;

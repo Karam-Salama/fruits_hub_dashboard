@@ -16,6 +16,8 @@ class CustomButton extends StatelessWidget {
     required this.style,
     required this.mainAxisAlignment,
     this.imageIcon,
+    this.kWidth,
+    this.kHeight,
   });
 
   final Color? backGroundColor;
@@ -23,14 +25,16 @@ class CustomButton extends StatelessWidget {
   final String? text;
   final VoidCallback? onPressed;
   final String? imageIcon;
+  final double? kWidth;
+  final double? kHeight;
   TextStyle? style;
   MainAxisAlignment mainAxisAlignment;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: double.infinity,
-      height: kHeightBottom,
+      width: kWidth ?? double.infinity,
+      height: kHeight ?? kHeightBottom,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(

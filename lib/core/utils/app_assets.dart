@@ -189,4 +189,12 @@ class Assets {
   /// Assets for assetsImagesShowOrders
   /// assets/images/show_orders.svg
   static const String assetsImagesShowOrders = "assets/images/show_orders.svg";
+
+  /// Assets for assetsIconsEditUser
+  /// assets/icons/edit-user.svg
+  static const String assetsIconsEditUser = "assets/icons/edit-user.svg";
+
+  /// Assets for assetsIconsDeleteUser
+  /// assets/icons/delete-user.svg
+  static const String assetsIconsDeleteUser = "assets/icons/delete-user.svg";
 }

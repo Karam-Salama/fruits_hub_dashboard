@@ -11,10 +11,13 @@ abstract class AppColors {
   static const Color whiteColor = Color(0xFFFFFFFF);
   static const Color blackColor = Color(0xFF000000);
   static const Color greyColor = Color(0xFF949D9E);
-  static const Color darkGreyColor =  Color(0xFF4E5556);
-  static const Color lightGreyColor =  Color(0xFFC9CECF);
-  static const Color dotsIndicatorColor =  Color(0xFFD8D8D8);
-  static const Color redColor = Color(0xFFE53935);
+  static const Color darkGreyColor = Color(0xFF4E5556);
+  static const Color lightGreyColor = Color(0xFFC9CECF);
+  static const Color dotsIndicatorColor = Color(0xFFD8D8D8);
+  static const Color redColor = Color(0xFFEF4444);
+  static const Color blueColor = Color(0xFF3A7FF1);
   static const Color greenColor = Color(0xFF43A047);
   static const Color yellowColor = Color(0xFFFDD835);
+  static const Color lighterBlueColor = Color(0xFFE7EDF6);
+  static const Color lighterRedColor = Color(0xFFFEF2F2);
 }

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/services/service_locator.dart';
+import '../../domain/repo/show_user_repo.dart';
+import '../cubit/show_users_cubit.dart';
 import '../widgets/show_users_view_body.dart';
 
 class ShowUsersView extends StatelessWidget {
@@ -8,8 +12,12 @@ class ShowUsersView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: ShowUsersViewBody(),
+    return Scaffold(
+      body: BlocProvider(
+        create: (context) =>
+            ShowUsersCubit(showUsersRepo: getIt<ShowUsersRepo>())..getUsers(),
+        child: ShowUsersViewBody(),
+      ),
     );
   }
 }
