@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'review_entity.dart';
 
 class ProductEntity {
@@ -8,7 +6,7 @@ class ProductEntity {
   final String description;
   final num price;
   final num discount;
-  final File image;
+  final Object image; // ✅ التعديل هنا
   final bool isFeatured;
   String? imageUrl;
   final int expirationsMonths;

@@ -1,6 +1,7 @@
 // ignore_for_file: unused_local_variable
 
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/functions/build_custom_dialog.dart';
@@ -25,6 +26,8 @@ class CustomAddProductForm extends StatefulWidget {
 
 class _CustomAddProductFormState extends State<CustomAddProductForm> {
   File? productImage;
+  Uint8List? webProductImage;
+
   String? productName;
   String? productCode;
   num? productPrice, expirationMonths, numberOfCalories;
@@ -74,7 +77,13 @@ class _CustomAddProductFormState extends State<CustomAddProductForm> {
             children: [
               CustomUploadImageWidget(
                 onImageSelected: (value) {
-                  productImage = value;
+                  setState(() {
+                    if (kIsWeb) {
+                      webProductImage = value;
+                    } else {
+                      productImage = value;
+                    }
+                  });
                 },
               ),
               const SizedBox(height: 12),
@@ -177,22 +186,32 @@ class _CustomAddProductFormState extends State<CustomAddProductForm> {
                       style: AppTextStyle.Cairo700style16,
                       mainAxisAlignment: MainAxisAlignment.center,
                       onPressed: () async {
-                        if (productImage != null) {
+                        final hasImage = (kIsWeb && webProductImage != null) ||
+                            (!kIsWeb && productImage != null);
+
+                        if (hasImage) {
                           if (_formKey.currentState!.validate()) {
                             _formKey.currentState!.save();
+
+                            final imageToUse =
+                                kIsWeb ? webProductImage : productImage;
+
                             ProductEntity addProductEntity = ProductEntity(
-                                name: productName!,
-                                image: productImage!,
-                                code: productCode!,
-                                price: productPrice!,
-                                discount: productDiscount!,
-                                description: productDescription!,
-                                isFeatured: isFeatured,
-                                expirationsMonths: expirationMonths!.toInt(),
-                                numberOfCalories: numberOfCalories!.toInt(),
-                                unitAmount: unitAmount!.toInt(),
-                                isOrganic: isOrganic,
-                                reviews: []);
+                              name: productName!,
+                              image:
+                                  imageToUse!, // عدّل النوع في الكيان لو محتاج
+                              code: productCode!,
+                              price: productPrice!,
+                              discount: productDiscount!,
+                              description: productDescription!,
+                              isFeatured: isFeatured,
+                              expirationsMonths: expirationMonths!.toInt(),
+                              numberOfCalories: numberOfCalories!.toInt(),
+                              unitAmount: unitAmount!.toInt(),
+                              isOrganic: isOrganic,
+                              reviews: [],
+                            );
+
                             context
                                 .read<AddProductCubit>()
                                 .addProduct(addProductEntity);
@@ -205,6 +224,36 @@ class _CustomAddProductFormState extends State<CustomAddProductForm> {
                           showError(context);
                         }
                       },
+                      // onPressed: () async {
+                      //   print('Selected image: $productImage');
+                      //   if (productImage != null) {
+                      //     if (_formKey.currentState!.validate()) {
+                      //       _formKey.currentState!.save();
+                      //       ProductEntity addProductEntity = ProductEntity(
+                      //           name: productName!,
+                      //           image: productImage!,
+                      //           code: productCode!,
+                      //           price: productPrice!,
+                      //           discount: productDiscount!,
+                      //           description: productDescription!,
+                      //           isFeatured: isFeatured,
+                      //           expirationsMonths: expirationMonths!.toInt(),
+                      //           numberOfCalories: numberOfCalories!.toInt(),
+                      //           unitAmount: unitAmount!.toInt(),
+                      //           isOrganic: isOrganic,
+                      //           reviews: []);
+                      //       context
+                      //           .read<AddProductCubit>()
+                      //           .addProduct(addProductEntity);
+                      //     } else {
+                      //       setState(() {
+                      //         autovalidateMode = AutovalidateMode.always;
+                      //       });
+                      //     }
+                      //   } else {
+                      //     showError(context);
+                      //   }
+                      // },
                     ),
               const SizedBox(height: 20),
             ],
@@ -219,11 +268,11 @@ class _CustomAddProductFormState extends State<CustomAddProductForm> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Error'),
-          content: const Text('Please select an image'),
+          title: const Text('من فضلك'),
+          content: const Text('يرجى تحديد صورة المنتج'),
           actions: <Widget>[
             TextButton(
-              child: const Text('OK'),
+              child: const Text('موافق'),
               onPressed: () {
                 Navigator.of(context).pop();
               },

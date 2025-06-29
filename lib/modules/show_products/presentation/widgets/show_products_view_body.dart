@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fruits_hub_dashboard/core/utils/app_assets.dart';
 import 'package:fruits_hub_dashboard/modules/add_product/domain/entities/product_entity.dart';
 import 'package:fruits_hub_dashboard/modules/show_products/presentation/cubit/show_products_states.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -225,8 +224,6 @@ class CustomProductsSliverList extends StatelessWidget {
       children: [
         CustomTwoOperationWidget(
           text: "تعديل",
-          icon: Assets.assetsIconsEditUser,
-          color: AppColors.blueColor,
           backGroundColor: AppColors.lighterBlueColor,
           onTap: () {
             Navigator.push(
@@ -239,8 +236,6 @@ class CustomProductsSliverList extends StatelessWidget {
         ),
         CustomTwoOperationWidget(
           text: "حذف",
-          icon: Assets.assetsIconsDeleteUser,
-          color: AppColors.redColor,
           backGroundColor: AppColors.lighterRedColor,
           onTap: () {
             _showDeleteConfirmationDialog(context, product.code);

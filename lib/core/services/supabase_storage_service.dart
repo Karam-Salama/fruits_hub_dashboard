@@ -3,10 +3,11 @@
 import 'dart:io';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:path/path.dart' as b;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'storage_service.dart';
+
+import 'package:flutter/foundation.dart';
 
 class SupabaseStorageService implements StorageService {
   static late Supabase _supabase;
@@ -29,22 +30,31 @@ class SupabaseStorageService implements StorageService {
     );
   }
 
-  // رفع الصورة إلى Supabase
+  // ✅ دعم File و Uint8List
   @override
-  Future<String> uploadImage(File file, String path) async {
+  Future<String> uploadImage(Object file, String path) async {
     try {
-      String fileName = b.basename(file.path); // اسم الملف مع الامتداد
-      var result = await _supabase.client.storage
-          .from('fruits_images')
-          .upload('$path/$fileName', file);
+      String fileName = DateTime.now().millisecondsSinceEpoch.toString();
 
-      // جلب رابط URL صالح
-      String publicUrl = _supabase.client.storage
-          .from('fruits_images')
-          .getPublicUrl('$path/$fileName')
-          .toString();
+      final storage = _supabase.client.storage.from('fruits_images');
 
-      return publicUrl; // إعادة الرابط العام
+      if (kIsWeb && file is Uint8List) {
+        final result = await storage.uploadBinary(
+          '$path/$fileName.webp',
+          file,
+          fileOptions: const FileOptions(cacheControl: '3600', upsert: false),
+        );
+        return storage.getPublicUrl('$path/$fileName.webp');
+      } else if (file is File) {
+        final result = await storage.upload(
+          '$path/$fileName',
+          file,
+          fileOptions: const FileOptions(cacheControl: '3600', upsert: false),
+        );
+        return storage.getPublicUrl('$path/$fileName');
+      } else {
+        throw Exception('Unsupported file type');
+      }
     } catch (e) {
       throw Exception('Failed to upload image to Supabase: $e');
     }

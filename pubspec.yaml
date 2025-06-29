@@ -26,6 +26,7 @@ dependencies:
   email_validator: ^3.0.0
   flutter_localizations:
     sdk: flutter
+  file_picker: ^10.2.0
 
 dev_dependencies:
   flutter_test:

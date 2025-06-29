@@ -112,8 +112,6 @@ class CustomUserSliverList extends StatelessWidget {
       children: [
         CustomTwoOperationWidget(
           text: "تعديل",
-          icon: Assets.assetsIconsEditUser,
-          color: AppColors.blueColor,
           backGroundColor: AppColors.lighterBlueColor,
           onTap: () {
             Navigator.push(
@@ -126,8 +124,6 @@ class CustomUserSliverList extends StatelessWidget {
         ),
         CustomTwoOperationWidget(
           text: "حذف",
-          icon: Assets.assetsIconsDeleteUser,
-          color: AppColors.redColor,
           backGroundColor: AppColors.lighterRedColor,
           onTap: () {
             _showDeleteConfirmationDialog(context, user.uId);

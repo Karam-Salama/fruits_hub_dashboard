@@ -75,7 +75,7 @@ class ProductModel {
       numberOfCalories: numberOfCalories,
       unitAmount: unitAmount,
       reviews: reviews.map((review) => review.toEntity()).toList(),
-      image: image ?? File(''),
+      image: image ?? File(''), // أو ارسل null واعمل default جوه entity
     );
   }
 
@@ -95,7 +95,7 @@ class ProductModel {
       reviews: entity.reviews
           .map((review) => ReviewModel.fromEntity(review))
           .toList(),
-      image: entity.image,
+      image: entity.image is File ? entity.image as File : null,
     );
   }
 
