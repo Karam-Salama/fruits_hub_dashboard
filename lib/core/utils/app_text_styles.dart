@@ -66,4 +66,11 @@ abstract class AppTextStyle {
     fontSize: 22,
     fontWeight: FontWeight.bold,
   );
+
+  static final Cairo600style10 = const TextStyle(
+    fontFamily: 'Cairo',
+    fontWeight: FontWeight.w600,
+    fontSize: 10,
+    color: AppColors.orangeColor,
+  );
 }

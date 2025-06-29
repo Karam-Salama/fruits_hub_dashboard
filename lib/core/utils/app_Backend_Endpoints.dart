@@ -6,4 +6,6 @@ class BackendEndpoints {
   static String getUserData = 'users';
   static String ifUserExists = 'users';
   static String addProduct = 'products';
+  static String getProducts = 'products';
+  static String addOrders = 'orders';
 }

@@ -5,8 +5,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../core/utils/app_text_styles.dart';
 
-class CustomUserOperationWidget extends StatelessWidget {
-  const CustomUserOperationWidget({
+class CustomTwoOperationWidget extends StatelessWidget {
+  const CustomTwoOperationWidget({
     super.key,
     required this.icon,
     required this.color,

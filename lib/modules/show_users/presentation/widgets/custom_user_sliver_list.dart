@@ -110,7 +110,7 @@ class CustomUserSliverList extends StatelessWidget {
     return Wrap(
       spacing: 10,
       children: [
-        CustomUserOperationWidget(
+        CustomTwoOperationWidget(
           text: "تعديل",
           icon: Assets.assetsIconsEditUser,
           color: AppColors.blueColor,
@@ -124,7 +124,7 @@ class CustomUserSliverList extends StatelessWidget {
             );
           },
         ),
-        CustomUserOperationWidget(
+        CustomTwoOperationWidget(
           text: "حذف",
           icon: Assets.assetsIconsDeleteUser,
           color: AppColors.redColor,

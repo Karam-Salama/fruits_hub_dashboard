@@ -57,7 +57,8 @@ abstract class AppStrings {
   static const String notifications = "الاشعارات";
   static const String more = "المزيد";
   static const String watermelon = "بطيخ";
-  static const String watermelonPrice  =  "20 جنية / الكيلو";
+  static const String watermelonPrice = "20 جنية / الكيلو";
+  static const String kilo = "الكيلو";
 }
 
 class FirebaseCollectionName {}

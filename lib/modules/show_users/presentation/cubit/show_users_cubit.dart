@@ -23,8 +23,7 @@ class ShowUsersCubit extends Cubit<ShowUsersStates> {
   }
 
   Future<void> deleteUser(String userId) async {
-    final usersBeforeDelete =
-        List<UserEntity>.from(currentUsers); // حفظ نسخة احتياطية
+    final usersBeforeDelete = List<UserEntity>.from(currentUsers);
     emit(DeleteUsersLoadingState());
 
     final result = await showUsersRepo.deleteUser(userId);
