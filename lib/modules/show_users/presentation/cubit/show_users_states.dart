@@ -15,3 +15,12 @@ final class ShowUsersErrorState extends ShowUsersStates {
   final String errorMessage;
   ShowUsersErrorState({required this.errorMessage});
 }
+
+final class DeleteUsersLoadingState extends ShowUsersStates {}
+
+final class DeleteUsersSuccessState extends ShowUsersStates {}
+
+final class DeleteUsersErrorState extends ShowUsersStates {
+  final String errorMessage;
+  DeleteUsersErrorState({required this.errorMessage});
+}

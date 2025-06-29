@@ -33,4 +33,19 @@ class ShowUsersRepoImplement extends ShowUsersRepo {
       return left(ServerFailure('فشل في جلب المستخدمين: ${e.toString()}'));
     }
   }
+
+  @override
+  Future<Either<Failure, void>> deleteUser(String userId) async {
+    try {
+      // 1. حذف المستند المراد حذفه من مجموعة "users"
+      await FirebaseFirestore.instance
+          .collection(BackendEndpoints.getUserData)
+          .doc(userId)
+          .delete();
+
+      return right(null);
+    } catch (e) {
+      return left(ServerFailure('فشل في حذف المستخدم: ${e.toString()}'));
+    }
+  }
 }
