@@ -16,21 +16,18 @@ class ShowUsersRepoImplement extends ShowUsersRepo {
   });
 
   @override
-  Future<Either<Failure, List<UserEntity>>> getUsers() async {
+  Stream<Either<Failure, List<UserEntity>>> getUsers() async* {
     try {
-      // 1. جلب كل المستندات من مجموعة "users"
-      final usersCollection = await FirebaseFirestore.instance
-          .collection(BackendEndpoints.getUserData)
-          .get();
+      await for (var data
+          in databaseService.streamData(path: BackendEndpoints.getUserData)) {
+        List<UserEntity> users = (data as List)
+            .map<UserEntity>((e) => UserModel.fromJson(e).toEntity())
+            .toList();
 
-      // 2. تحويل كل مستند إلى UserEntity
-      final users = usersCollection.docs
-          .map((doc) => UserModel.fromJson(doc.data()).toEntity())
-          .toList();
-
-      return right(users);
+        yield Right(users);
+      }
     } catch (e) {
-      return left(ServerFailure('فشل في جلب المستخدمين: ${e.toString()}'));
+      yield left(ServerFailure('فشل في جلب المستخدمين: ${e.toString()}'));
     }
   }
 

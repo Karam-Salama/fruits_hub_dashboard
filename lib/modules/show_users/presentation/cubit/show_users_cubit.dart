@@ -10,16 +10,18 @@ class ShowUsersCubit extends Cubit<ShowUsersStates> {
 
   ShowUsersCubit({required this.showUsersRepo}) : super(ShowUsersInitial());
 
-  Future<void> getUsers() async {
+  void getUsers() async {
     emit(ShowUsersLoadingState());
-    final result = await showUsersRepo.getUsers();
-    result.fold(
-      (failure) => emit(ShowUsersErrorState(errorMessage: failure.message)),
-      (users) {
-        currentUsers = users; // حفظ القائمة الحالية
-        emit(ShowUsersSuccessState(users: users));
-      },
-    );
+
+    await for (var result in showUsersRepo.getUsers()) {
+      result.fold(
+        (failure) => emit(ShowUsersErrorState(errorMessage: failure.message)),
+        (users) {
+          currentUsers = users; // حفظ القائمة الحالية
+          emit(ShowUsersSuccessState(users: users));
+        },
+      );
+    }
   }
 
   Future<void> deleteUser(String userId) async {

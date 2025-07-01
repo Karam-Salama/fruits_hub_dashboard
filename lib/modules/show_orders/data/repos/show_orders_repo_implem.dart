@@ -14,17 +14,18 @@ class ShowOrdersRepoImplem implements ShowOrdersRepo {
 
   ShowOrdersRepoImplem({required this.databaseService});
   @override
-  Future<Either<Failure, List<OrderEntity>>> getOrders() async {
+  Stream<Either<Failure, List<OrderEntity>>> getOrders() async* {
     try {
-      var response =
-          await databaseService.getData(path: BackendEndpoints.getOrders);
-      List<OrderEntity> orders = (response as List)
-          .map<OrderEntity>((e) => OrderModel.fromJson(e).toEntity())
-          .toList();
+      await for (var data
+          in databaseService.streamData(path: BackendEndpoints.getOrders)) {
+        List<OrderEntity> orders = (data as List)
+            .map<OrderEntity>((e) => OrderModel.fromJson(e).toEntity())
+            .toList();
 
-      return Right(orders);
+        yield Right(orders);
+      }
     } on Exception catch (e) {
-      return Left(ServerFailure('فشل في جلب الطلبات: ${e.toString()}'));
+      yield Left(ServerFailure('فشل في جلب الطلبات: ${e.toString()}'));
     }
   }
 }

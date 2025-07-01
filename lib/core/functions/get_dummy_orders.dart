@@ -2,6 +2,8 @@ import 'package:fruits_hub_dashboard/modules/show_orders/domain/entities/order_e
 import 'package:fruits_hub_dashboard/modules/show_orders/domain/entities/order_product_entity.dart';
 import 'package:fruits_hub_dashboard/modules/show_orders/domain/entities/shipping_address_entity.dart';
 
+import '../enums/order_enum.dart';
+
 OrderEntity getDummyOrder() {
   // Sample ordered products
   String watermelonImageUrl =
@@ -61,6 +63,7 @@ OrderEntity getDummyOrder() {
     shippingAddressEntity: shippingAddress,
     orderProductsEntity: products,
     paymentMethod: 'Paypal',
+    status: OrderStatusEnum.pending,
   );
 }
 

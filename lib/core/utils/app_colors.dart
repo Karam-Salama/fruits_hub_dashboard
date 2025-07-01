@@ -22,4 +22,9 @@ abstract class AppColors {
 
   static const Color lighterBlueColor = Color(0xFFE7EDF6);
   static const Color lighterRedColor = Color(0xFFFEF2F2);
+
+  static const Color pendingColor = Color(0xFFFFA500); // Orange (Pending)
+  static const Color acceptedColor = Color(0xFF4CAF50); // Green (Accepted)
+  static const Color deliveredColor = Color(0xFF2196F3); // Blue (Delivered)
+  static const Color cancelledColor = Color(0xFFF44336); // Red (Cancelled)
 }

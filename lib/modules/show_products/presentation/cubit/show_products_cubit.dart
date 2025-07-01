@@ -8,13 +8,14 @@ class ShowProductsCubit extends Cubit<ShowProductsState> {
 
   final ShowProductsRepo showProductsRepo;
 
-  Future<void> getProducts() async {
+  void getProducts() async {
     emit(ShowProductsLoading());
-    final result = await showProductsRepo.getProducts();
-    result.fold(
-      (failure) => emit(ShowProductsFailure(errorMessage: failure.message)),
-      (products) => emit(ShowProductsSuccess(products: products)),
-    );
+    await for (var result in showProductsRepo.getProducts()) {
+      result.fold(
+        (failure) => emit(ShowProductsFailure(errorMessage: failure.message)),
+        (products) => emit(ShowProductsSuccess(products: products)),
+      );
+    }
   }
 
   Future<void> deleteProduct(String code) async {

@@ -4,5 +4,5 @@ import '../../../../core/errors/failures.dart';
 import '../entities/order_entity.dart';
 
 abstract class ShowOrdersRepo {
-  Future<Either<Failure, List<OrderEntity>>> getOrders();
+  Stream<Either<Failure, List<OrderEntity>>> getOrders();
 }

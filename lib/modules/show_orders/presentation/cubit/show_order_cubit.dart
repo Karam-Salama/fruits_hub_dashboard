@@ -8,12 +8,13 @@ class ShowOrdersCubit extends Cubit<ShowOrdersState> {
 
   final ShowOrdersRepo showOrdersRepo;
 
-  Future<void> getOrders() async {
+  void getOrders() async {
     emit(ShowOrdersLoading());
-    final result = await showOrdersRepo.getOrders();
-    result.fold(
-      (failure) => emit(ShowOrdersFailure(errorMessage: failure.message)),
-      (orders) => emit(ShowOrdersSuccess(orders: orders)),
-    );
+    await for (var result in showOrdersRepo.getOrders()) {
+      result.fold(
+        (failure) => emit(ShowOrdersFailure(errorMessage: failure.message)),
+        (orders) => emit(ShowOrdersSuccess(orders: orders)),
+      );
+    }
   }
 }

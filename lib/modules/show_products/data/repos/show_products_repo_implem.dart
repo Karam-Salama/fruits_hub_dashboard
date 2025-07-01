@@ -16,19 +16,18 @@ class ShowProductsRepoImplem implements ShowProductsRepo {
   ShowProductsRepoImplem({required this.databaseService});
 
   @override
-  Future<Either<Failure, List<ProductEntity>>> getProducts() async {
+  Stream<Either<Failure, List<ProductEntity>>> getProducts() async* {
     try {
-      var data = await FirebaseFirestore.instance
-          .collection(BackendEndpoints.getProducts)
-          .get();
+      await for (var data
+          in databaseService.streamData(path: BackendEndpoints.getProducts)) {
+        List<ProductEntity> products = (data as List)
+            .map<ProductEntity>((e) => ProductModel.fromJson(e).toEntity())
+            .toList();
 
-      List<ProductEntity> products = data.docs
-          .map((doc) => ProductModel.fromJson(doc.data()).toEntity())
-          .toList();
-      ;
-      return right(products);
+        yield Right(products);
+      }
     } catch (e) {
-      return left(ServerFailure('Failed to get products ${e.toString()}'));
+      yield left(ServerFailure('Failed to get products ${e.toString()}'));
     }
   }
 

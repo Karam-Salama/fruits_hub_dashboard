@@ -1,5 +1,6 @@
 import 'package:fruits_hub_dashboard/modules/show_orders/domain/entities/order_entity.dart';
 
+import '../../../../core/enums/order_enum.dart';
 import 'order_product_model.dart';
 import 'shipping_address_model.dart';
 
@@ -8,7 +9,8 @@ class OrderModel {
   final String uId;
   final ShippingAddressModel shippingAddressModel;
   final List<OrderProductModel> orderProducts;
-  final String? paymentMethod;
+  final String paymentMethod;
+  final String? status;
 
   OrderModel({
     required this.totalPrice,
@@ -16,6 +18,7 @@ class OrderModel {
     required this.shippingAddressModel,
     required this.orderProducts,
     required this.paymentMethod,
+    required this.status,
   });
 
   factory OrderModel.fromJson(Map<String, dynamic> json) {
@@ -28,6 +31,7 @@ class OrderModel {
         json['orderProducts'].map((e) => OrderProductModel.fromJson(e)),
       ),
       paymentMethod: json['paymentMethod'],
+      status: json['status'],
     );
   }
 
@@ -47,9 +51,13 @@ class OrderModel {
     return OrderEntity(
       totalPrice: totalPrice,
       uId: uId,
+      status: getStatus(),
       orderProductsEntity: orderProducts.map((e) => e.toEntity()).toList(),
       shippingAddressEntity: shippingAddressModel.toEntity(),
       paymentMethod: paymentMethod,
     );
   }
+
+  OrderStatusEnum getStatus() =>
+      OrderStatusEnum.values.byName(status ?? 'pending');
 }
