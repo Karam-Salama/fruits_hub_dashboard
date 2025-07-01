@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../domain/repos/show_products_repo.dart';
@@ -7,15 +9,16 @@ class ShowProductsCubit extends Cubit<ShowProductsState> {
   ShowProductsCubit(this.showProductsRepo) : super(ShowProductsInitial());
 
   final ShowProductsRepo showProductsRepo;
+  StreamSubscription? _streamSubscription;
 
   void getProducts() async {
     emit(ShowProductsLoading());
-    await for (var result in showProductsRepo.getProducts()) {
+    _streamSubscription = showProductsRepo.getProducts().listen((result) {
       result.fold(
         (failure) => emit(ShowProductsFailure(errorMessage: failure.message)),
         (products) => emit(ShowProductsSuccess(products: products)),
       );
-    }
+    });
   }
 
   Future<void> deleteProduct(String code) async {
@@ -25,5 +28,11 @@ class ShowProductsCubit extends Cubit<ShowProductsState> {
       (failure) => emit(DeleteProductErrorState(errorMessage: failure.message)),
       (_) => getProducts(),
     );
+  }
+
+  @override
+  Future<void> close() {
+    _streamSubscription?.cancel();
+    return super.close();
   }
 }

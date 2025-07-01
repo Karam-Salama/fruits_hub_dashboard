@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../add_user/domain/entities/user_entity.dart';
@@ -9,11 +11,10 @@ class ShowUsersCubit extends Cubit<ShowUsersStates> {
   List<UserEntity> currentUsers = [];
 
   ShowUsersCubit({required this.showUsersRepo}) : super(ShowUsersInitial());
-
+  StreamSubscription? _streamSubscription;
   void getUsers() async {
     emit(ShowUsersLoadingState());
-
-    await for (var result in showUsersRepo.getUsers()) {
+    _streamSubscription = showUsersRepo.getUsers().listen((result) {
       result.fold(
         (failure) => emit(ShowUsersErrorState(errorMessage: failure.message)),
         (users) {
@@ -21,7 +22,7 @@ class ShowUsersCubit extends Cubit<ShowUsersStates> {
           emit(ShowUsersSuccessState(users: users));
         },
       );
-    }
+    });
   }
 
   Future<void> deleteUser(String userId) async {
@@ -41,5 +42,11 @@ class ShowUsersCubit extends Cubit<ShowUsersStates> {
         emit(ShowUsersSuccessState(users: currentUsers));
       },
     );
+  }
+
+  @override
+  Future<void> close() {
+    _streamSubscription?.cancel();
+    return super.close();
   }
 }

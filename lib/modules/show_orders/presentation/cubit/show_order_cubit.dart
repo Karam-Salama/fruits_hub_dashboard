@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../domain/repos/show_orders_repo.dart';
@@ -7,14 +9,21 @@ class ShowOrdersCubit extends Cubit<ShowOrdersState> {
   ShowOrdersCubit({required this.showOrdersRepo}) : super(ShowOrdersInitial());
 
   final ShowOrdersRepo showOrdersRepo;
+  StreamSubscription? _streamSubscription;
 
   void getOrders() async {
     emit(ShowOrdersLoading());
-    await for (var result in showOrdersRepo.getOrders()) {
+    _streamSubscription = showOrdersRepo.getOrders().listen((result) {
       result.fold(
         (failure) => emit(ShowOrdersFailure(errorMessage: failure.message)),
         (orders) => emit(ShowOrdersSuccess(orders: orders)),
       );
-    }
+    });
+  }
+
+  @override
+  Future<void> close() {
+    _streamSubscription?.cancel();
+    return super.close();
   }
 }
