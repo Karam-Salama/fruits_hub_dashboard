@@ -27,6 +27,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   file_picker: ^10.2.0
+  expansion_tile_list: ^2.0.0
 
 dev_dependencies:
   flutter_test:

@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../core/services/service_locator.dart';
+import '../../domain/repos/show_orders_repo.dart';
+import '../cubit/show_order_cubit.dart';
 import '../widgets/show_orders_view_body.dart';
 
 class ShowOrdersView extends StatelessWidget {
@@ -6,8 +10,13 @@ class ShowOrdersView extends StatelessWidget {
   static const routeName = '/show-orders';
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: ShowOrdersViewBody(),
+    return Scaffold(
+      body: BlocProvider(
+        create: (context) =>
+            ShowOrdersCubit(showOrdersRepo: getIt.get<ShowOrdersRepo>())
+              ..getOrders(),
+        child: ShowOrdersViewBody(),
+      ),
     );
   }
 }

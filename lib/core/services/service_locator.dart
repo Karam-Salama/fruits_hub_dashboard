@@ -5,6 +5,8 @@ import 'package:get_it/get_it.dart';
 
 import '../../modules/add_user/data/repo/add_user_repo_imple.dart';
 import '../../modules/add_user/domain/repo/add_user_repo.dart';
+import '../../modules/show_orders/data/repos/show_orders_repo_implem.dart';
+import '../../modules/show_orders/domain/repos/show_orders_repo.dart';
 import '../../modules/show_products/data/repos/show_products_repo_implem.dart';
 import '../../modules/show_products/domain/repos/show_products_repo.dart';
 import '../../modules/show_users/data/repo/show_users_repo_imple.dart';
@@ -37,10 +39,14 @@ void setUpServiceLocator() {
 
   //! Show Users
   getIt.registerSingleton<ShowUsersRepo>(
-    ShowUsersRepoImplement(databaseService: getIt<DatabaseService>()),
+    ShowUsersRepoImplement(databaseService: getIt.get<DatabaseService>()),
   );
 
   //! Show Products
   getIt.registerSingleton<ShowProductsRepo>(
-      ShowProductsRepoImplem(databaseService: getIt<DatabaseService>()));
+      ShowProductsRepoImplem(databaseService: getIt.get<DatabaseService>()));
+
+  //! Show Orders
+  getIt.registerSingleton<ShowOrdersRepo>(
+      ShowOrdersRepoImplem(databaseService: getIt.get<DatabaseService>()));
 }
