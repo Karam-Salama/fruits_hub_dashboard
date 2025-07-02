@@ -9,4 +9,5 @@ class BackendEndpoints {
   static String getProducts = 'products';
   static String addOrders = 'orders';
   static String getOrders = 'orders';
+  static String updateOrder = 'orders';
 }

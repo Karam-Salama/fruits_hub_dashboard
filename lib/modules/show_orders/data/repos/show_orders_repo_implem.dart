@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:fruits_hub_dashboard/core/enums/order_enum.dart';
 
 import 'package:fruits_hub_dashboard/core/errors/failures.dart';
 import 'package:fruits_hub_dashboard/core/services/database_service.dart';
@@ -26,6 +27,25 @@ class ShowOrdersRepoImplem implements ShowOrdersRepo {
       }
     } on Exception catch (e) {
       yield Left(ServerFailure('فشل في جلب الطلبات: ${e.toString()}'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> updateOrders({
+    required OrderStatusEnum status,
+    required String orderId,
+  }) async {
+    try {
+      await databaseService.updateData(
+        path: BackendEndpoints.updateOrder,
+        documentId: orderId,
+        data: {
+          'status': status.name,
+        },
+      );
+      return Right(null);
+    } on Exception catch (e) {
+      return Left(ServerFailure('فشل في تحديث الطلبات: ${e.toString()}'));
     }
   }
 }

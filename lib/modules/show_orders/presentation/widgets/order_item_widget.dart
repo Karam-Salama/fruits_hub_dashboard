@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_hub_dashboard/core/enums/order_enum.dart';
 import 'package:fruits_hub_dashboard/core/utils/app_colors.dart';
+
 import 'package:fruits_hub_dashboard/modules/show_orders/domain/entities/order_entity.dart';
 import 'package:fruits_hub_dashboard/modules/show_orders/domain/entities/order_product_entity.dart';
+
+import 'order_action_buttons_widget.dart';
 
 class OrderItemWidget extends StatelessWidget {
   final OrderEntity orderEntity;
@@ -19,7 +22,7 @@ class OrderItemWidget extends StatelessWidget {
         child: ExpansionTile(
           tilePadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           title: Text(
-            'Order #${orderEntity.uId.substring(0, 4)}',
+            'Order #${orderEntity.orderId.substring(0, 4)}',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
           subtitle: Row(
@@ -75,6 +78,10 @@ class OrderItemWidget extends StatelessWidget {
                   const SizedBox(height: 8),
                   ...orderEntity.orderProductsEntity
                       .map((product) => _buildProductItem(product)),
+                  const SizedBox(height: 8),
+                  const Divider(),
+                  const SizedBox(height: 8),
+                  OrderActionButtonsWidget(orderEntity: orderEntity),
                 ],
               ),
             ),
@@ -126,9 +133,13 @@ class OrderItemWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(product.name,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w600, fontSize: 16)),
+                Text(
+                  product.name,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
+                  ),
+                ),
                 Text('الكود: ${product.code}'),
                 Text('الكمية: ${product.quantity}'),
               ],

@@ -1,6 +1,7 @@
 import 'package:fruits_hub_dashboard/modules/show_orders/domain/entities/order_entity.dart';
 import 'package:fruits_hub_dashboard/modules/show_orders/domain/entities/order_product_entity.dart';
 import 'package:fruits_hub_dashboard/modules/show_orders/domain/entities/shipping_address_entity.dart';
+import 'package:uuid/uuid.dart';
 
 import '../enums/order_enum.dart';
 
@@ -64,6 +65,7 @@ OrderEntity getDummyOrder() {
     orderProductsEntity: products,
     paymentMethod: 'Paypal',
     status: OrderStatusEnum.pending,
+    orderId: const Uuid().v4(),
   );
 }
 
