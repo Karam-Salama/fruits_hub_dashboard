@@ -100,6 +100,7 @@ class _EditProductViewBodyState extends State<EditProductViewBody> {
                 autovalidateMode: autovalidateMode,
                 child: Column(
                   children: [
+                    SizedBox(height: size.height / 25),
                     CustomAppBar(
                       title: 'صفحه تعديل المنتج',
                       isVisibleTrailing: false,
@@ -230,7 +231,9 @@ class _EditProductViewBodyState extends State<EditProductViewBody> {
                               Expanded(
                                 child: CustomButton(
                                   text: 'حفظ التعديلات',
-                                  style: AppTextStyle.Cairo700style16,
+                                  style: AppTextStyle.Cairo600style16.copyWith(
+                                    color: AppColors.whiteColor,
+                                  ),
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   onPressed: () async {
                                     if (_formKey.currentState!.validate()) {
@@ -282,7 +285,7 @@ class _EditProductViewBodyState extends State<EditProductViewBody> {
                               Expanded(
                                 child: CustomButton(
                                   text: 'إلغاء',
-                                  style: AppTextStyle.Cairo700style16.copyWith(
+                                  style: AppTextStyle.Cairo600style16.copyWith(
                                     color: AppColors.redColor,
                                   ),
                                   backGroundColor: AppColors.whiteColor,
