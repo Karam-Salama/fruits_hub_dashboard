@@ -2,7 +2,7 @@
 
 import 'dart:io';
 
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:fruits_hub_dashboard/core/utils/app_Backend_Endpoints.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'storage_service.dart';
@@ -25,8 +25,8 @@ class SupabaseStorageService implements StorageService {
   // تهيئة Supabase
   static Future<void> initSupabase() async {
     _supabase = await Supabase.initialize(
-      url: dotenv.env['SUPABASE_PROJETC_URL'].toString(),
-      anonKey: dotenv.env['SUPABASE_SECRET_KEY'].toString(),
+      url: Constants.SUPABASE_PROJETC_URL,
+      anonKey: Constants.SUPABASE_SECRET_KEY.toString(),
     );
   }
 
