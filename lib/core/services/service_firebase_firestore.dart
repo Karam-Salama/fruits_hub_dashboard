@@ -80,6 +80,9 @@ class FirabaseFirestoreService implements DatabaseService {
     required Map<String, dynamic> data,
     String? documentId,
   }) async {
-    await firestore.collection(path).doc(documentId).update(data);
+    await firestore
+        .collection(path)
+        .doc(documentId)
+        .set(data, SetOptions(merge: true));
   }
 }

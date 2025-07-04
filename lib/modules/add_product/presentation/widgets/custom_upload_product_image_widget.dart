@@ -4,11 +4,18 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import '../../../../core/functions/pick_file.dart';
 
 class CustomUploadImageWidget extends StatefulWidget {
-  const CustomUploadImageWidget({super.key, required this.onImageSelected});
-  final ValueChanged<dynamic> onImageSelected; // دعم File أو Uint8List
+  const CustomUploadImageWidget({
+    super.key,
+    required this.onImageSelected,
+    this.initialImageUrl,
+  });
+
+  final ValueChanged<dynamic> onImageSelected;
+  final String? initialImageUrl;
 
   @override
   State<CustomUploadImageWidget> createState() =>
@@ -19,6 +26,14 @@ class _CustomUploadImageWidgetState extends State<CustomUploadImageWidget> {
   bool isLoading = false;
   File? imageFile;
   Uint8List? webImage;
+  bool _hasInitialImage = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _hasInitialImage =
+        widget.initialImageUrl != null && widget.initialImageUrl!.isNotEmpty;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +51,7 @@ class _CustomUploadImageWidgetState extends State<CustomUploadImageWidget> {
                 if (bytes != null) {
                   setState(() {
                     webImage = bytes;
+                    _hasInitialImage = false;
                     widget.onImageSelected(bytes);
                   });
                 }
@@ -45,6 +61,7 @@ class _CustomUploadImageWidgetState extends State<CustomUploadImageWidget> {
                   final file = File(filePath);
                   setState(() {
                     imageFile = file;
+                    _hasInitialImage = false;
                     widget.onImageSelected(file);
                   });
                 }
@@ -68,7 +85,7 @@ class _CustomUploadImageWidgetState extends State<CustomUploadImageWidget> {
               ),
               child: _buildImagePreview(),
             ),
-            if (imageFile != null || webImage != null)
+            if (imageFile != null || webImage != null || !_hasInitialImage)
               Positioned(
                 top: 0,
                 right: 0,
@@ -77,6 +94,8 @@ class _CustomUploadImageWidgetState extends State<CustomUploadImageWidget> {
                     setState(() {
                       imageFile = null;
                       webImage = null;
+                      _hasInitialImage = widget.initialImageUrl != null &&
+                          widget.initialImageUrl!.isNotEmpty;
                       widget.onImageSelected(null);
                     });
                   },
@@ -90,24 +109,29 @@ class _CustomUploadImageWidgetState extends State<CustomUploadImageWidget> {
   }
 
   Widget _buildImagePreview() {
-    if (imageFile == null && webImage == null) {
-      return const Center(child: Icon(Icons.add_a_photo, size: 30));
-    }
-
-    if (kIsWeb) {
-      return webImage != null
-          ? ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Image.memory(webImage!, fit: BoxFit.cover),
-            )
-          : const Center(child: CircularProgressIndicator());
+    if (imageFile != null) {
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: Image.file(imageFile!, fit: BoxFit.cover),
+      );
+    } else if (webImage != null) {
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: Image.memory(webImage!, fit: BoxFit.cover),
+      );
+    } else if (_hasInitialImage && widget.initialImageUrl != null) {
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: CachedNetworkImage(
+          imageUrl: widget.initialImageUrl!,
+          fit: BoxFit.cover,
+          placeholder: (context, url) =>
+              const Center(child: CircularProgressIndicator()),
+          errorWidget: (context, url, error) => const Icon(Icons.error),
+        ),
+      );
     } else {
-      return imageFile != null
-          ? ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Image.file(imageFile!, fit: BoxFit.cover),
-            )
-          : const Center(child: CircularProgressIndicator());
+      return const Center(child: Icon(Icons.add_a_photo, size: 30));
     }
   }
 }

@@ -5,4 +5,6 @@ import '../../errors/failures.dart';
 
 abstract class ProductRepo {
   Future<Either<Failure, void>> addProduct(ProductEntity addProductEntity);
+  Future<Either<Failure, void>> updateProduct(
+      ProductEntity updateProductEntity);
 }

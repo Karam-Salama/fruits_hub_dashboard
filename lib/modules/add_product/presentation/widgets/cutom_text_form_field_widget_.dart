@@ -15,6 +15,7 @@ class CustomTextFormField extends StatelessWidget {
   final String? Function(String?)? validator;
   final void Function(String?)? onSaved;
   final int maxLines;
+  final String? initialValue;
 
   const CustomTextFormField({
     super.key,
@@ -27,11 +28,13 @@ class CustomTextFormField extends StatelessWidget {
     this.validator,
     this.onSaved,
     this.maxLines = 1,
+    this.initialValue,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      initialValue: initialValue,
       validator: validator,
       onSaved: onSaved,
       onChanged: onChanged,

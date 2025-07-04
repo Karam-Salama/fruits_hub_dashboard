@@ -19,10 +19,27 @@ class ProductRepoImplementation implements ProductRepo {
       await databaseService.addData(
         path: BackendEndpoints.addProduct,
         data: ProductModel.fromEntity(addProductEntity).toJson(),
+        documentId: addProductEntity.code,
       );
       return const Right(null);
     } catch (e) {
       return Left(ServerFailure('Failed to add product'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> updateProduct(
+      ProductEntity updateProductEntity) async {
+    try {
+      await databaseService.updateData(
+        path: BackendEndpoints.addProduct,
+        data: ProductModel.fromEntity(updateProductEntity).toJson(),
+        documentId:
+            updateProductEntity.code, // استخدام كود المنتج كـ documentId
+      );
+      return const Right(null);
+    } catch (e) {
+      return Left(ServerFailure('Failed to update product: ${e.toString()}'));
     }
   }
 }
