@@ -17,3 +17,8 @@ final class AddUserErrorState extends AddUserState {
 }
 
 final class ObscurePasswordTextUpdateState extends AddUserState {}
+
+final class UserUpdatedSuccessState extends AddUserState {
+  final UserEntity userEntity;
+  UserUpdatedSuccessState({required this.userEntity});
+}

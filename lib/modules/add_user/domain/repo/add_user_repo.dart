@@ -12,5 +12,7 @@ abstract class AddUserRepo {
 
   Future addUserData({required UserEntity user});
 
+  Future<Either<Failure, void>> updateUser({required UserEntity user});
+
   Future<void> verifyEmail();
 }

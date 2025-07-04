@@ -82,4 +82,21 @@ class AddUserRepoImplement extends AddUserRepo {
       await firebaseAuthService.deleteUser();
     }
   }
+
+  @override
+  Future<Either<Failure, void>> updateUser({required UserEntity user}) async {
+    try {
+      await databaseService.updateData(
+        path: BackendEndpoints.addUserData,
+        documentId: user.uId,
+        data: UserModel.fromEntity(user).toMap(),
+      );
+      return const Right(null);
+    } on CustomException catch (e) {
+      return Left(ServerFailure(e.message));
+    } catch (e) {
+      log('Error updating user: ${e.toString()}');
+      return Left(ServerFailure('حدث خطأ أثناء تحديث بيانات المستخدم'));
+    }
+  }
 }

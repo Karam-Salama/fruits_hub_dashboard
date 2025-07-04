@@ -32,6 +32,13 @@ class Validation {
     return null;
   }
 
+  static String? validateOptionalPassword(String? value) {
+    if (value != null && value.isNotEmpty && value.length < 6) {
+      return 'يجب أن تكون كلمة المرور 6 أحرف على الأقل';
+    }
+    return null;
+  }
+
   static String? validatePhone(String? value) {
     if (value == null || value.isEmpty) {
       return 'هذا الحقل مطلوب';
